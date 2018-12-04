@@ -23,10 +23,17 @@ export class LoginComponent implements OnInit {
   login(username, password) {
     this.loading = true;
     this.auth.login(username, password).toPromise().then((retorno: any) => {
-      this.loading = false;
-      sessionStorage.setItem('userLogged', retorno._body);
-      this.auth.loggedIn.next(true);
-      this.router.navigate(['/'])
+      console.log('Retorno login: ', );
+      if (retorno._body !== '[]') {
+        this.loading = false;
+        sessionStorage.setItem('userLogged', retorno._body);
+        this.auth.loggedIn.next(true);
+        this.router.navigate(['/']);
+      } else {
+        this.loading = false;
+        this.auth.loggedIn.next(false);
+        alert('Erro! \nVerifique os dados informados e tente novamente!');
+      }
     }).catch((err: any) => {
       this.loading = false;
       this.auth.loggedIn.next(false);

@@ -34,9 +34,11 @@ export class HeaderComponent implements OnInit {
   collapseMenu() {
     console.log('Leave Mouse');
     var myClass = document.getElementsByClassName('page');
+    myClass[0].classList.toggle('navExpanded');
     let elem = document.getElementById("logout-info");
     elem.classList.remove("active");
-    myClass[0].classList.toggle('navExpanded');
+    let arrow = document.getElementById("marker");
+    arrow.classList.remove("active");
   }
 
   logoutInfo() {

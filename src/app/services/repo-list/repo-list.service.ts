@@ -9,11 +9,21 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class RepoListService {
 
+  userCredentials;
+
   constructor(public http: Http, public authService: AuthService) { }
+
+  gitHubAuth(username, password) {
+    let headers: Headers = new Headers();
+    let userAuth = `${username}:${password}`;
+    this.userCredentials = btoa(userAuth);
+    headers.append("Authorization", "Basic " + this.userCredentials);
+    return this.http.get(environment.URL_GITHUB_AUTH, {headers: headers});
+  }
 
   getRepos() {
     let headers: Headers = new Headers();
-    headers.append("Authorization", "Basic "+ this.authService.userCredentials);
-    return this.http.get(environment.URL_GITHUB_REPO, {headers: headers});
+    headers.append("Authorization", "Basic " + this.userCredentials);
+    return this.http.get(environment.URL_GITHUB_REPO, { headers: headers });
   }
 }

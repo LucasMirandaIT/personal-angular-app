@@ -27,8 +27,9 @@ export class AddFileModal implements OnInit {
     this.newFile = {
       filename: this.filename,
       date: this.insertDate,
-      url: this.downloadUrl
+      downloadurl: this.downloadUrl
     }
+    console.log('New File on Modal: ', this.newFile);
     this.dialogRef.close(this.newFile);
   }
 }

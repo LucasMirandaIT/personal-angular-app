@@ -3,6 +3,8 @@ import { FilesDownloadService } from 'src/app/services/files-download.service';
 import { User } from 'src/app/models/user';
 import { MatDialog } from '@angular/material/dialog';
 import { AddFileModal } from 'src/app/modals/add-file-modal/add-file-modal.component';
+import { Router } from '@angular/router';
+import { ifError } from 'assert';
 
 @Component({
   selector: 'app-filesdown-list',
@@ -11,12 +13,11 @@ import { AddFileModal } from 'src/app/modals/add-file-modal/add-file-modal.compo
 })
 export class FilesdownListComponent implements OnInit {
 
-  constructor(private filesService : FilesDownloadService, public dialog: MatDialog) { }
+  constructor(private filesService : FilesDownloadService, public dialog: MatDialog, public router: Router) { }
 
   filesList;
   newFileData;
   loading: boolean;
-  noData: boolean;
   userLogged: User;
 
   ngOnInit() {
@@ -33,7 +34,6 @@ export class FilesdownListComponent implements OnInit {
       console.log('Files List: ', this.filesList);
     }).catch((err) => {
       this.loading = false;
-      this.noData = true;
     })
   }
 
@@ -42,9 +42,16 @@ export class FilesdownListComponent implements OnInit {
       width: '60%'
     })
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('Modal Result', result);
-      this.addNewFile(result);
+      if(result) {
+        console.log('Modal Result', result);
+        this.addNewFile(result);
+      }
     });
+  }
+
+  tableClick(url) {
+    console.log('URL Clicked: ', url);
+    window.open(url, '_blank');
   }
 
   addNewFile(newFile) {
