@@ -1,0 +1,30 @@
+<div class="header">
+  <h2>Lista de Arquivos Disponíveis para Download
+
+    <button mat-button mat-raised-button color="primary" type="button" [hidden]="!userLogged.admin" (click)="openAddFileModal()">Adicionar Novo...</button>
+  </h2>
+  <a [href]="userLogged.html_url">
+    <h3>{{userLogged.html_url}}</h3>
+  </a>
+</div>
+<table align="center" *ngIf="!loading && !noData">
+  <thead>
+    <td>Nome do Arquivo</td>
+    <td>Data da Inserção</td>
+    <td>Link para Download</td>
+  </thead>
+  <tbody>
+    <tr *ngFor="let file of filesList" (click)="tableClick(file.html_url)">
+        <td>{{file.filename}}</td>
+        <td>{{file.date}}</td>
+        <td>{{file.downloadurl}}</td>
+      </tr>
+  </tbody>
+</table>
+<div *ngIf="loading">
+  <app-loading color="#666" [text]="'Carregando Dados...'"></app-loading>
+</div>
+
+<div *ngIf="noData">
+  <h3 style="text-align: center; padding-top: 50px">Não há dados para serem exibidos. Tente adicionar novos arquivos.</h3>
+</div>

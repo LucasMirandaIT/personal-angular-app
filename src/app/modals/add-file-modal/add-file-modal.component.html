@@ -1,0 +1,13 @@
+<mat-form-field>
+  <input matInput placeholder="Nome do Arquivo" [(ngModel)]="filename">
+</mat-form-field> <br>
+<mat-form-field>
+  <input matInput (focus)="picker.open()" (click)="myPicker.open()" readonly [matDatepicker]="picker" [(ngModel)]="insertDate" placeholder="Data de Inserção">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field> <br>
+<mat-form-field>
+  <input matInput placeholder="Link de Download" [(ngModel)]="downloadUrl">
+</mat-form-field>
+<button mat-button mat-raised-button color="primary" type="button" (click)="closeDialog()">Salvar Alterações</button>
+
