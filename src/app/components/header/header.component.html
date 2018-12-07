@@ -1,9 +1,9 @@
 <div class="page">
   <div class="sidebar" (mouseenter)="expandMenu()" (mouseleave)="collapseMenu()">
     <ul>
-      <li> <a routerLink=""> <span class="leader">P</span><span class="detail">ágina Inicial</span> </a> </li>
-      <li> <a routerLink="repo-list"> <span class="leader">R</span><span class="detail">epositório (GitHub)</span> </a> </li>
-      <li> <a routerLink="download-list"> <span class="leader">R</span><span class="detail">epositório de Arquivos</span> </a> </li>
+      <li> <a (click)="collapseMenu()" routerLink=""> <span class="leader">P</span><span class="detail">ágina Inicial</span> </a> </li>
+      <li> <a (click)="collapseMenu()" routerLink="repo-list"> <span class="leader">R</span><span class="detail">epositório (GitHub)</span> </a> </li>
+      <li> <a (click)="collapseMenu()" routerLink="download-list"> <span class="leader">R</span><span class="detail">epositório de Arquivos</span> </a> </li>
     </ul>
     <div style="position: absolute; bottom: 0; width: 100%">
       <img class="avatar" (click)="logoutInfo()" [src]="userLogged[0].picture" />
@@ -12,6 +12,7 @@
         <p>{{userLogged[0].name}}</p>
         <!-- <p>Public Repos: {{userLogged.public_repos}}</p>
         <p>Private Repos: {{userLogged.plan.private_repos}}</p> -->
+        <button class="logout-button edit" (click)="profileEdit()">Editar Perfil</button>
         <button class="logout-button" (click)="logout()">Fazer Logout</button>
       </div>
     </div>

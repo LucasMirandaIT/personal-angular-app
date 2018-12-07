@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pan-header',
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   userLogged: User;
   
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.refreshInfo();
@@ -28,13 +29,13 @@ export class HeaderComponent implements OnInit {
   expandMenu() {
     console.log('Entered Mouse');
     var myClass = document.getElementsByClassName('page');
-    myClass[0].classList.toggle('navExpanded');
+    myClass[0].classList.add('navExpanded');
   }
   
   collapseMenu() {
     console.log('Leave Mouse');
     var myClass = document.getElementsByClassName('page');
-    myClass[0].classList.toggle('navExpanded');
+    myClass[0].classList.remove('navExpanded');
     let elem = document.getElementById("logout-info");
     elem.classList.remove("active");
     let arrow = document.getElementById("marker");
@@ -46,6 +47,12 @@ export class HeaderComponent implements OnInit {
     let arrow = document.getElementById("marker");
     elem.classList.toggle("active");
     arrow.classList.toggle("active");
+  }
+
+  profileEdit() {
+    this.collapseMenu();
+    this.router.navigate(['user-config']);
+    console.log('Profile Clicked');
   }
 
   logout() {

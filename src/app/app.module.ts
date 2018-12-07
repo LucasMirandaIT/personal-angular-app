@@ -17,6 +17,7 @@ import { FilesdownListComponent } from './pages/filesdown-list/filesdown-list.co
 import { MaterialImportsModule } from './shared/material-imports.module';
 import { AddFileModal } from './modals/add-file-modal/add-file-modal.component';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material';
+import { ProfileConfigComponent } from './pages/profile-config/profile-config.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material';
     LoadingComponent,
     SearchComponent,
     FilesdownListComponent,
-    AddFileModal
+    AddFileModal,
+    ProfileConfigComponent
   ],
   imports: [
     BrowserModule,

@@ -129,22 +129,22 @@
 
 .logout-button {
   display: block;
-  width: 240px;
+  width: 150px;
   height: 40px;
   padding: 0;
-  margin: 10px 20px 10px;
-  margin-left: calc(50% - 120px);
   font-weight: 700;
   color: #fff;
   background-color: #22c08a;
   border: none;
-  border-radius: 20px;
   transition: background-color 0.1s ease-in-out;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   cursor: pointer;
+  &.edit {
+    margin-bottom: 5px;
+  }
 }
 
 .header-bar {
