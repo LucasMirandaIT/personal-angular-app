@@ -9,6 +9,7 @@ import { User } from 'src/app/models/user';
 export class ProfileConfigComponent implements OnInit {
 
   userLogged: User;
+  userInfo: User;
 
   constructor() { }
 
@@ -26,7 +27,7 @@ export class ProfileConfigComponent implements OnInit {
   }
 
   userAttributes() {
-
+    this.userInfo = this.userLogged;
   }
 
   changedCheckbox(field, value) {
