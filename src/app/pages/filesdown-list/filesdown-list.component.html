@@ -1,5 +1,5 @@
 <div class="header">
-  <h2>Lista de Arquivos Disponíveis para Download
+  <h2 class="title">Lista de Arquivos Disponíveis para Download
 
   </h2>
   <a (click)="openAddFileModal()">
@@ -19,9 +19,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let file of filesList">
-      <td>{{file.filename}}</td>
-      <td>{{file.date | date: 'dd/MM/yyyy - hh:mm'}}</td>
-      <td (click)="tableClick(file.downloadurl)">{{file.downloadurl}}</td>
+      <td style="cursor: default">{{file.filename}}</td>
+      <td style="cursor: default; text-align: center;">{{file.date | date: 'dd/MM/yyyy - hh:mm'}}</td>
+      <td style="color: blue; text-decoration: underline; text-align: center;" (click)="tableClick(file.downloadurl)">Google Drive</td>
     </tr>
   </tbody>
 </table>

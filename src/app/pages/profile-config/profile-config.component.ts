@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-profile-config',
@@ -7,9 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileConfigComponent implements OnInit {
 
+  userLogged: User;
+
   constructor() { }
 
   ngOnInit() {
+    this.refreshInfo();
+  }
+
+  refreshInfo() {
+    let user = JSON.parse(sessionStorage.getItem('userLogged'));
+    this.userLogged = user[0];
+    if (!this.userLogged.picture) {
+      this.userLogged.picture = './assets/img/avatar.png';
+    }
+    this.userAttributes();
+  }
+
+  userAttributes() {
+
+  }
+
+  changedCheckbox(field, value) {
+    console.log('Changed Checkbox', field, ' - ', value);
   }
 
 }
