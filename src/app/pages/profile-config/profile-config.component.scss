@@ -8,4 +8,23 @@
         width: 15vw;
         border-radius: 50%;
     }
+    .personal-data {
+        display: flex;
+        .info {
+            display: flex;
+            mat-form-field {
+                margin-right: 15px;
+            }
+        }
+        .picture {
+            height: 200px;
+            width: 200px;
+            margin-left: auto;
+            margin-right: 10px;
+        }
+    }
+    .save-button {
+        width: 142px;
+        margin-left: calc(50% - 71px);
+    }
 }

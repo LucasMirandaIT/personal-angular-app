@@ -1,24 +1,33 @@
 <div class="page-content">
   <h2 class="title">Alteração de dados cadastrais</h2>
   <h2>Dados Pessoais</h2>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Nome" value="">
-    </mat-form-field> <br>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Email" value="">
-    </mat-form-field> <br>
+  <div class="personal-data">
+    <div class="info">
+      <mat-form-field>
+        <input matInput placeholder="Nome" [(ngModel)]="name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="email">
+      </mat-form-field> <br>
+    </div>
+    <div class="picture">
       <img class="picture" (click)="logoutInfo()" [src]="userLogged.picture" />
+    </div>
+  </div>
   <hr>
   <h2>Funcionalidades Ativas</h2>
-  <mat-checkbox (change)="changedCheckbox('gitHub', checkboxGitHub)" [(ngModel)]="checkboxGitHub">Integração com GitHub
+  <mat-checkbox (change)="changedCheckbox('gitHub', checkboxGitHub)">Integração com GitHub
     (Repositórios)</mat-checkbox> <br>
-  <mat-checkbox>Gerenciamento de Repositório de Arquivos para Download</mat-checkbox>
+  <mat-checkbox (change)="changedCheckbox('files', checkboxFiles)">Gerenciamento de Repositório de Arquivos para Download</mat-checkbox>
   <hr>
   <h2>Integração com GitHub</h2>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Login do GitHub" value="">
+    <input matInput placeholder="Login do GitHub" value="" [(ngModel)]="gHubLogin">
   </mat-form-field> <br>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Senha do GitHub" value="">
+    <input matInput placeholder="Senha do GitHub" value="" [(ngModel)]="gHubPasswd">
   </mat-form-field>
+  <div class="footer">
+    <button class="save-button" mat-raised-button color="primary" (click)="saveChanges(name, email, picture, gHubLogin, gHubPasswd)">Salvar Alterações</button>
+  </div>
 </div>

@@ -18,6 +18,7 @@ import { MaterialImportsModule } from './shared/material-imports.module';
 import { AddFileModal } from './modals/add-file-modal/add-file-modal.component';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material';
 import { ProfileConfigComponent } from './pages/profile-config/profile-config.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ProfileConfigComponent } from './pages/profile-config/profile-config.co
     HttpModule,
     FormsModule,
     MaterialImportsModule,
+    ToastrModule.forRoot(),
     AppRoutingModule
   ],
   providers: [

@@ -1,5 +1,6 @@
 import { Integration } from "./integration";
 
 export class Permissions {
-    gitHubIntegration: Integration[];
+    gitHubIntegration: Integration;
+    gDriveIntegration: Integration;
 }

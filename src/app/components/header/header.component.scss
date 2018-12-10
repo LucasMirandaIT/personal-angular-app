@@ -29,7 +29,7 @@
   overflow: hidden;
   padding: 10px;
   height: 25px;
-  width: 150px;
+  width: 250px;
   overflow: hidden;
 }
 
@@ -40,7 +40,7 @@
 .sidebar span.leader {
   opacity: 1;
   width: 7px;
-  margin-left: 6px;
+  margin-left: 16px;
   -webkit-transition: opacity 0.2s ease-out;
   font-weight: bold;
 }
@@ -51,11 +51,15 @@
 }
 
 .navExpanded .sidebar {
-  width: 150px;
+  width: 250px;
 }
 
 .navExpanded .sidebar span.detail {
   opacity: 1;
+}
+
+.sidebar span.detail {
+  margin-left: 15px;
 }
 
 .logo {
@@ -115,6 +119,9 @@
     max-height: 200px;
     transition: max-height 0.5s ease-in;
   }
+  #footer {
+    display: flex;
+  }
 }
 
 #logout-info:before {
@@ -128,8 +135,10 @@
 }
 
 .logout-button {
-  display: block;
-  width: 150px;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  width: 120px;
   height: 40px;
   padding: 0;
   font-weight: 700;
@@ -144,6 +153,8 @@
   cursor: pointer;
   &.edit {
     margin-bottom: 5px;
+    margin-right: 5px;
+    margin-left: 3px;
   }
 }
 

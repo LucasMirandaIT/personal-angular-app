@@ -66,7 +66,7 @@ tbody {
   .login-form {
     padding: 8px 20px 20px;
     height: 120px;
-    width: 100%;
+    width: calc(100% - 40px);
   }
   
   .username-row {
