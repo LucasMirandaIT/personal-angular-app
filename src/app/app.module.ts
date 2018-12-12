@@ -19,6 +19,7 @@ import { AddFileModal } from './modals/add-file-modal/add-file-modal.component';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material';
 import { ProfileConfigComponent } from './pages/profile-config/profile-config.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,11 @@ import { ToastrModule } from 'ngx-toastr';
     HttpModule,
     FormsModule,
     MaterialImportsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      closeButton: true,
+      progressBar: true
+    }),
+    ImageCropperModule,
     AppRoutingModule
   ],
   providers: [

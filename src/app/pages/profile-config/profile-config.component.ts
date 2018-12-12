@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { ProfileService } from 'src/app/services/profile.service';
+import { ToastrService } from 'ngx-toastr';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-profile-config',
@@ -9,16 +11,22 @@ import { ProfileService } from 'src/app/services/profile.service';
 })
 export class ProfileConfigComponent implements OnInit {
 
-  userLogged: User;
-  userInfo: User;
-  checkboxGitHub: boolean = false; 
+  userLogged: User = new User();
+  user: User = new User();
+  userInfo: User = new User();
+  checkboxGitHub: boolean = false;
   checkBoxFiles: boolean = false;
-  user;
 
-  constructor(private profileService: ProfileService) { }
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  cropperReady = false;
+
+  gitHubLogin;
+  gitHubPassword;
+
+  constructor(private profileService: ProfileService, private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.user = {};
     this.refreshInfo();
   }
 
@@ -28,11 +36,41 @@ export class ProfileConfigComponent implements OnInit {
     if (!this.userLogged.picture) {
       this.userLogged.picture = './assets/img/avatar.png';
     }
+    for (let i = 0; i < this.userLogged.permissions.length; i++) {
+      if (this.userLogged.permissions[i].gitHubIntegration.login) {
+        this.checkboxGitHub = this.userLogged.permissions[i].gitHubIntegration.value;
+        this.gitHubLogin = this.userLogged.permissions[i].gitHubIntegration.login;
+        this.gitHubPassword = this.userLogged.permissions[i].gitHubIntegration.password;
+      }
+    }
     this.userAttributes();
   }
 
   userAttributes() {
     this.userInfo = this.userLogged;
+  }
+
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+    document.getElementById('picture_select').style.display = 'none';
+    // document.getElementById('picture_select').classList.add('active');
+  }
+
+  imageCropped(event: ImageCroppedEvent) {
+    this.userInfo.picture = event.base64;
+  }
+  imageLoaded() {
+    this.cropperReady = true;
+  }
+  loadImageFailed() {
+    // show message
+    console.log('Load Image Failed Function');
+  }
+
+  openModal() {
+    // Get the modal
+    var modal = document.getElementById('myModal');
+    modal.style.display = "block";
   }
 
   changedCheckbox(field, value) {
@@ -43,20 +81,23 @@ export class ProfileConfigComponent implements OnInit {
     }
   }
 
-  saveChanges(name, email, picture, gHubLogin, gHubPasswd) {
-    this.user.admin = this.userLogged.admin;
-    this.user.name = name;
-    this.user.email = email;
-    if (picture !== '') this.user.picture = picture;
-    this.user.permissions = {};
-    this.user.permissions.gitHubIntegration = {};
-    this.user.permissions.gDriveIntegration = {};
-    this.user.permissions.gitHubIntegration.value = this.checkboxGitHub;
-    this.user.permissions.gitHubIntegration.login = gHubLogin;
-    this.user.permissions.gitHubIntegration.password = gHubPasswd;
-    this.user.permissions.gDriveIntegration.value = this.checkBoxFiles;
+  saveChanges() {
+    console.log('UserINFO: ', this.userInfo);
+    for (let i = 0; i < this.userLogged.permissions.length; i++) {
+      this.userInfo.permissions[i].gitHubIntegration.value = this.checkboxGitHub;
+      this.userInfo.permissions[i].gitHubIntegration.login = this.gitHubLogin;
+      this.userInfo.permissions[i].gitHubIntegration.password = this.gitHubPassword;
+    }
 
-    this.profileService.updateProfile(this.userLogged.username, this.user)
+    this.profileService.updateProfile(this.userInfo).toPromise().then((retorno) => {
+      this.toastr.success('Informações Alteradas com Sucesso!', 'Sucesso!');
+      console.log('Retorno Serviço Update: ', retorno);
+    }).catch((err) => {
+      if (err.status === 413) {
+        this.toastr.error('Imagem escolhida muito grande, favor redimensionar ou escolher uma nova imagem', 'Erro no Upload');
+      }
+      console.log('Error Serviço Update: ', err);
+    })
   }
 
 }

@@ -33,18 +33,12 @@ export class LoginComponent implements OnInit {
       } else {
         this.loading = false;
         this.auth.loggedIn.next(false);
-        this.toastr.error('Verifique os dados informados e tente novamente', 'Erro', {
-          closeButton: true,
-          progressBar: true
-        });
+        this.toastr.error('Verifique os dados informados e tente novamente', 'Erro');
       }
     }).catch((err: any) => {
       this.loading = false;
       this.auth.loggedIn.next(false);
-      this.toastr.error('Erro na comunicação, tente novamente', 'Erro', {
-        closeButton: true,
-        progressBar: true
-      });
+      this.toastr.error('Erro na comunicação, tente novamente', 'Erro');
     })
   }
 

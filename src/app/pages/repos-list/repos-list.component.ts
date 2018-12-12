@@ -18,8 +18,9 @@ export class ReposListComponent implements OnInit {
   constructor(private repoService: RepoListService, private searchService: SearchService) { }
 
   ngOnInit() {
-    this.userLogged = JSON.parse(sessionStorage.getItem('gitHubLoginInfo'));    
+    this.userLogged = JSON.parse(sessionStorage.getItem('userLogged'));    
     this.initSearch();
+    this.refreshRepos();
   }
 
   initSearch() {
@@ -29,7 +30,13 @@ export class ReposListComponent implements OnInit {
   }
 
   refreshRepos() {
-    this.repoService.getRepos().toPromise().then((response: any) => {
+    let auth;
+    for (let i = 0; i < this.userLogged[0].permissions.length; i++) {
+      if(this.userLogged[0].permissions[i].gitHubIntegration) {
+        auth = btoa(this.userLogged[0].permissions[i].gitHubIntegration.login + ':' + this.userLogged[0].permissions[i].gitHubIntegration.password);
+      }
+    }
+    this.repoService.getRepos(auth).toPromise().then((response: any) => {
       this.loading = false;
       this.repositories = JSON.parse(response._body);
       console.log(this.repositories);

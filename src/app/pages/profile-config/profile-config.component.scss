@@ -1,30 +1,49 @@
 .page-content {
-    padding: 10px;
-    .title {
-        text-align: center;
+  padding: 10px;
+  .title {
+    text-align: center;
+  }
+  .picture {
+    height: 15vw;
+    width: 15vw;
+    border-radius: 50%;
+  }
+  .personal-data {
+    display: flex;
+    .info {
+      display: flex;
+      mat-form-field {
+        margin-right: 15px;
+      }
     }
     .picture {
-        height: 15vw;
-        width: 15vw;
-        border-radius: 50%;
+      height: 248px;
+      width: 200px;
+      margin-left: auto;
+      margin-right: 120px;
+      img {
+          margin-left: calc(50% - 50px);
+          height: 200px;
+          margin-bottom: 10px;
+      }
     }
-    .personal-data {
-        display: flex;
-        .info {
-            display: flex;
-            mat-form-field {
-                margin-right: 15px;
-            }
-        }
-        .picture {
-            height: 200px;
-            width: 200px;
-            margin-left: auto;
-            margin-right: 10px;
-        }
-    }
-    .save-button {
-        width: 142px;
-        margin-left: calc(50% - 71px);
-    }
+  }
+  .save-button {
+    width: 142px;
+    margin-left: calc(50% - 71px);
+  }
+  #picture-select {
+    //   &.active {
+    //     position: relative;
+    //     left: 33%;
+    //     top: -245px;
+    //   }
+  }
+
+  image-cropper {
+    position: relative;
+    top: -100%;
+    right: -25%;
+  }
+
 }

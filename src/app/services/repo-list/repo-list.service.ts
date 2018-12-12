@@ -21,9 +21,9 @@ export class RepoListService {
     return this.http.get(environment.URL_GITHUB_AUTH, {headers: headers});
   }
 
-  getRepos() {
+  getRepos(auth) {
     let headers: Headers = new Headers();
-    headers.append("Authorization", "Basic " + this.userCredentials);
+    headers.append("Authorization", "Basic " + auth);
     return this.http.get(environment.URL_GITHUB_REPO, { headers: headers });
   }
 }

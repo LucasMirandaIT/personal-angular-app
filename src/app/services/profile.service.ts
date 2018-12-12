@@ -12,10 +12,10 @@ export class ProfileService {
 
 
 
-  updateProfile(userLogged, newUser) {
+  updateProfile(newUser) {
 
     let bodyRequest = {
-      username: userLogged,
+      id: newUser._id,
       newUser: {
         admin: newUser.admin,
         name: newUser.name,
@@ -23,18 +23,15 @@ export class ProfileService {
         picture: newUser.picture,
         permissions: {
           gitHubIntegration: {
-            value: newUser.permissions.gitHubIntegration.value,
-            login: newUser.permissions.gitHubIntegration.login,
-            password: newUser.permissions.gitHubIntegration.password
-          },
-          gDriveIntegration: {
-            value: newUser.permissions.gDriveIntegration.value
+            value: newUser.permissions[0].gitHubIntegration.value,
+            login: newUser.permissions[0].gitHubIntegration.login,
+            password: newUser.permissions[0].gitHubIntegration.password
           }
         }
       }
     }
 
     let backendUrl = environment.URL_BACKEND_PROD + 'users/updateUser/'
-    this.http.post(backendUrl, bodyRequest)
+    return this.http.post(backendUrl, bodyRequest);
   }
 }
