@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AdmAreaComponent implements OnInit {
 
   users: User[];
+  usersToAproove: User[];
 
   constructor(private profileService: ProfileService, private toastr: ToastrService) { }
 
@@ -21,8 +22,11 @@ export class AdmAreaComponent implements OnInit {
 
   refreshUsers() {
     this.profileService.getUsersToAproove().toPromise().then((retorno: any) => {
-      this.users = JSON.parse(retorno._body);
+      this.usersToAproove = JSON.parse(retorno._body);
       console.log('Retorno Users Aproove, ', this.users);
+    });
+    this.profileService.getUsers().toPromise().then((retorno: any) => {
+      this.users = JSON.parse(retorno._body);
     })
   }
 
@@ -31,6 +35,7 @@ export class AdmAreaComponent implements OnInit {
       this.profileService.aprooveDeleteById(user._id).toPromise().then((retorno: any) => {
         this.profileService.aprooveCreateUser(user).toPromise().then((createRetorno: any) => {
           this.toastr.success('Usuário aprovado com sucesso', 'Sucesso!');
+          this.refreshUsers();
         }).catch((err: any) => {
           this.toastr.error('Erro na aprovação do Usuário, solicite uma nova criação', 'Erro!');
         });
@@ -39,6 +44,8 @@ export class AdmAreaComponent implements OnInit {
       });
     } else {
       this.profileService.aprooveDeleteById(user._id).toPromise().then((retorno: any) => {
+        this.toastr.success('Usuário reprovado com sucesso', 'Sucesso!');
+        this.refreshUsers();
       }).catch((err: any) => {
         this.toastr.error('Erro na reprovação do Usuário, tente novamente', 'Erro!');
       });

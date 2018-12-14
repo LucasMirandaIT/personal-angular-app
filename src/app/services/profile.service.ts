@@ -36,8 +36,13 @@ export class ProfileService {
   }
 
   register(user) {
-    let backendUrl = environment.URL_BACKEND_PROD + 'users/createUser/';
+    let backendUrl = environment.URL_BACKEND_PROD + 'aprooveUser/createUser';
     return this.http.post(backendUrl, user);
+  }
+
+  getUsers(){
+    let backendUrl = environment.URL_BACKEND_PROD + 'users/getUsers';
+    return this.http.get(backendUrl);
   }
 
   getUsersToAproove() {
@@ -51,7 +56,7 @@ export class ProfileService {
   }
 
   aprooveCreateUser(user) {
-    let backendUrl = environment.URL_BACKEND_PROD + 'aprooveUser/createUser';
+    let backendUrl = environment.URL_BACKEND_PROD + 'users/createUser';
     return this.http.post(backendUrl, user);
   }
 }
