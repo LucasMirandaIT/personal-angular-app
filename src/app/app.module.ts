@@ -20,6 +20,9 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material';
 import { ProfileConfigComponent } from './pages/profile-config/profile-config.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { ClipboardModule } from 'ngx-clipboard';
+import { RegisterComponent } from './pages/register/register.component';
+import { AdmAreaComponent } from './pages/adm-area/adm-area.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     SearchComponent,
     FilesdownListComponent,
     AddFileModal,
-    ProfileConfigComponent
+    ProfileConfigComponent,
+    RegisterComponent,
+    AdmAreaComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +50,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
       progressBar: true
     }),
     ImageCropperModule,
+    ClipboardModule,
     AppRoutingModule
   ],
   providers: [

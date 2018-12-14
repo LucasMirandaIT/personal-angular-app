@@ -30,8 +30,28 @@ export class ProfileService {
         }
       }
     }
-
-    let backendUrl = environment.URL_BACKEND_PROD + 'users/updateUser/'
+;
+    let backendUrl = environment.URL_BACKEND_PROD + 'users/updateUser/';
     return this.http.post(backendUrl, bodyRequest);
+  }
+
+  register(user) {
+    let backendUrl = environment.URL_BACKEND_PROD + 'users/createUser/';
+    return this.http.post(backendUrl, user);
+  }
+
+  getUsersToAproove() {
+    let backendUrl = environment.URL_BACKEND_PROD + 'users/getAproove';
+    return this.http.get(backendUrl);
+  }
+
+  aprooveDeleteById(id) {
+    let backendUrl = environment.URL_BACKEND_PROD + 'aprooveUser/deleteAproove';
+    return this.http.post(backendUrl, {id: id});
+  }
+
+  aprooveCreateUser(user) {
+    let backendUrl = environment.URL_BACKEND_PROD + 'aprooveUser/createUser';
+    return this.http.post(backendUrl, user);
   }
 }

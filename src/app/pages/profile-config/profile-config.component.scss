@@ -40,10 +40,24 @@
     //   }
   }
 
+  .show-pass {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    left: -26px;
+    &:hover {
+    color: #3f51b5;
+    }
+  }
+
   image-cropper {
     position: relative;
     top: -100%;
     right: -25%;
+  }
+
+  .mat-tab-label {
+    width: 25% !important;
   }
 
 }

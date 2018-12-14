@@ -17,9 +17,12 @@ export class ProfileConfigComponent implements OnInit {
   checkboxGitHub: boolean = false;
   checkBoxFiles: boolean = false;
 
+  selectedIndex;
+
   imageChangedEvent: any = '';
   croppedImage: any = '';
   cropperReady = false;
+
 
   gitHubLogin;
   gitHubPassword;
@@ -28,6 +31,11 @@ export class ProfileConfigComponent implements OnInit {
 
   ngOnInit() {
     this.refreshInfo();
+  }
+
+  nextStep() {
+    this.selectedIndex ++;
+    console.log(this.selectedIndex);
   }
 
   refreshInfo() {
@@ -48,6 +56,10 @@ export class ProfileConfigComponent implements OnInit {
 
   userAttributes() {
     this.userInfo = this.userLogged;
+  }
+
+  viewPassword(fieldID) {
+
   }
 
   fileChangeEvent(event: any): void {

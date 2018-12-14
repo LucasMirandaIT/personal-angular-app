@@ -8,3 +8,13 @@ $material-icons-font-path: '~material-icons/iconfont/';
 body {
     margin-left: 82px; margin-top: 60px;
 }
+
+.mat-tab-label {
+    width: 50% !important;
+  }
+
+  mat-tab-body {
+      .mat-tab-body-content {
+           overflow-y: hidden;
+      }
+  }

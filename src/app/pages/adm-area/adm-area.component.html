@@ -1,0 +1,33 @@
+<mat-tab-group>
+  <mat-tab label="Aprovação de Usuários Cadastros">
+    <div>
+      <table align="center">
+        <thead>
+          <td>ID</td>
+          <td>Nome</td>
+          <td>Username</td>
+          <td>Admin</td>
+          <td>Picture</td>
+          <td>Ações</td>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user._id}}</td>
+            <td>{{user.name}}</td>
+            <td style="text-align: center">{{user.username}}</td>
+            <td style="text-align: center">{{user.admin}}</td>
+            <td style="text-align: center">
+              <span *ngIf="user.picture">true</span>
+              <span *ngIf="!user.picture">false</span>
+            </td>
+            <td style="text-align: center">
+              <mat-icon style="color: green; cursor: pointer;" (click)="userAproove(user, 'accept')">done</mat-icon>
+              <mat-icon style="color: red; cursor: pointer;" (click)="userAproove(user, 'decline')">close</mat-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-tab>
+  <mat-tab label="Teste" disabled style="user-select: none"></mat-tab>
+</mat-tab-group>

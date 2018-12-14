@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   userLogged: User;
+  isAdmin: boolean;
   showGitHub: boolean;
   
   constructor(private auth: AuthService, private router: Router) { }
@@ -31,6 +32,9 @@ export class HeaderComponent implements OnInit {
       if (this.userLogged[0].permissions[i].gitHubIntegration.value === true) {
         this.showGitHub = true;
       }
+    }
+    if (this.userLogged[0].admin) {
+      this.isAdmin = true;
     }
     console.log('userLogged', this.userLogged);
   }
