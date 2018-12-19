@@ -7,6 +7,7 @@
   </div>
   <table align="center">
     <thead>
+      <td>Copiar</td>
       <td>Nome</td>
       <td>Descrição</td>
       <td>Stars</td>
@@ -15,6 +16,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let repo of repositories">
+        <td style="text-align: center">
+          <mat-checkbox [(ngModel)]="repo.mirror_url"></mat-checkbox>
+        </td>
         <td (click)="tableClick(repo.html_url)">{{repo.name}}</td>
         <td>{{repo.description}}</td>
         <td style="text-align: center">{{repo.stargazers_count}}</td>
@@ -23,6 +27,9 @@
       </tr>
     </tbody>
   </table>
+
+  <button mat-button color="primary" (click)="checkCloneURLS()">Checagem de Clone</button>
+
 
 </div>
 <div class="body" *ngIf="!repositories">

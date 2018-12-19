@@ -1,3 +1,39 @@
-<div id="typewriter">
-<h4>Esta aplicação foi desenvolvida por Lucas Miranda utilizando Angular para praticar desenvolvimento em Angular.</h4>
+<!-- <div style="display: flex; justify-content: space-between">
+<mat-card style="width: 28vw">
+  <a [href]="news.url">
+    <mat-card-title>{{news.title}}</mat-card-title>
+    <mat-card-subtitle>{{news.author}}</mat-card-subtitle>
+    <mat-card-content>
+      <img style="width: 20vw; margin-left: 2.5vw" [src]="news.urlToImage" />
+      <p>{{news.content}}</p>
+      <p>{{news.publishedAt}}</p>
+    </mat-card-content>
+  </a>
+</mat-card>
+</div> -->
+
+<typescript-dynamic-typing [typeValue]="typingText"></typescript-dynamic-typing>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly; margin-top: 8vw">
+  <flip-card style="margin-bottom: 2vw" *ngFor="let news of pagedItems" [title]="news.title" [imgSrc]="news.urlToImage" [description]="news.description"
+    [date]="news.publishedAt" [url]="news.url"></flip-card>
 </div>
+
+<!-- pager -->
+<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+  <li [ngClass]="{disabled:pager.currentPage === 1}">
+    <a [ngClass]="{disabled:pager.currentPage === 1}" (click)="setPage(1)"><mat-icon>first_page</mat-icon></a>
+  </li>
+  <li [ngClass]="{disabled:pager.currentPage === 1}">
+    <a [ngClass]="{disabled:pager.currentPage === 1}" (click)="setPage(pager.currentPage - 1)"><mat-icon>navigate_before</mat-icon></a>
+  </li>
+  <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+    <a (click)="setPage(page)">{{page}}</a>
+  </li>
+  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+    <a [ngClass]="{disabled:pager.currentPage === pager.totalPages}" (click)="setPage(pager.currentPage + 1)"><mat-icon>navigate_next</mat-icon></a>
+  </li>
+  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+    <a [ngClass]="{disabled:pager.currentPage === pager.totalPages}" (click)="setPage(pager.totalPages)"><mat-icon>last_page</mat-icon></a>
+  </li>
+</ul>

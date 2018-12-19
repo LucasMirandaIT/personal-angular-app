@@ -31,7 +31,6 @@ export class FilesdownListComponent implements OnInit {
     this.filesService.loadFilesList().toPromise().then((retorno: any) => {
       this.loading = false;
       this.filesList = JSON.parse(retorno._body);
-      console.log('Files List: ', this.filesList);
     }).catch((err) => {
       this.loading = false;
     })
@@ -43,14 +42,12 @@ export class FilesdownListComponent implements OnInit {
     })
     dialogRef.afterClosed().subscribe((result) => {
       if(result) {
-        console.log('Modal Result', result);
         this.addNewFile(result);
       }
     });
   }
 
   tableClick(url) {
-    console.log('URL Clicked: ', url);
     window.open(url, '_blank');
   }
 

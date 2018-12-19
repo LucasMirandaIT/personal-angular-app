@@ -9,6 +9,7 @@ export const environment = {
   URL_GITHUB_REPO: 'https://api.github.com/user/repos',
   URL_BACKEND_PROD: 'https://miranda-lucas.herokuapp.com/',
   URL_BACKEND_LOCAL: 'http://localhost:3000/',
+  URL_GNEWS: 'https://newsapi.org/v2/top-headlines?sources=google-news-br&apiKey=f7e657e1d6ef4de1a60c8246ad140bcb',
 };
 
 /*

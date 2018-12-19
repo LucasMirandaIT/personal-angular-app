@@ -35,7 +35,6 @@ export class ProfileConfigComponent implements OnInit {
 
   nextStep() {
     this.selectedIndex ++;
-    console.log(this.selectedIndex);
   }
 
   refreshInfo() {
@@ -94,7 +93,6 @@ export class ProfileConfigComponent implements OnInit {
   }
 
   saveChanges() {
-    console.log('UserINFO: ', this.userInfo);
     for (let i = 0; i < this.userLogged.permissions.length; i++) {
       this.userInfo.permissions[i].gitHubIntegration.value = this.checkboxGitHub;
       this.userInfo.permissions[i].gitHubIntegration.login = this.gitHubLogin;
@@ -103,12 +101,10 @@ export class ProfileConfigComponent implements OnInit {
 
     this.profileService.updateProfile(this.userInfo).toPromise().then((retorno) => {
       this.toastr.success('Informações Alteradas com Sucesso!', 'Sucesso!');
-      console.log('Retorno Serviço Update: ', retorno);
     }).catch((err) => {
       if (err.status === 413) {
         this.toastr.error('Imagem escolhida muito grande, favor redimensionar ou escolher uma nova imagem', 'Erro no Upload');
       }
-      console.log('Error Serviço Update: ', err);
     })
   }
 

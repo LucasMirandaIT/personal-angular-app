@@ -1,0 +1,13 @@
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <p>{{title}}</p>
+      <img class="img" [src]="imgSrc" />
+    </div>
+    <div class="flip-card-back">
+        <p>{{description}}</p>
+        <p>{{date | date: 'dd/MM/yyyy - hh:mm'}}</p>
+        <p class="clickable" (click)="goToNews()"> Ver mais...</p>
+    </div>
+  </div>
+</div>

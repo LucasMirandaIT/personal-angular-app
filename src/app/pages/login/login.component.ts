@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   login(username, password) {
     this.loading = true;
     this.auth.login(username, password).toPromise().then((retorno: any) => {
-      console.log('Retorno login: ', );
       if (retorno._body !== '[]') {
         this.loading = false;
         sessionStorage.setItem('userLogged', retorno._body);

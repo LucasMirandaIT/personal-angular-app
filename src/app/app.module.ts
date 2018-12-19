@@ -23,6 +23,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { ClipboardModule } from 'ngx-clipboard';
 import { RegisterComponent } from './pages/register/register.component';
 import { AdmAreaComponent } from './pages/adm-area/adm-area.component';
+import { FlipCardComponent } from './components/flip-card/flip-card.component';
+import { PagerService } from './services/pager/pager.service';
+import { TypescriptDynamicTypingComponent } from './components/typescript-dynamic-typing/typescript-dynamic-typing.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { AdmAreaComponent } from './pages/adm-area/adm-area.component';
     AddFileModal,
     ProfileConfigComponent,
     RegisterComponent,
-    AdmAreaComponent
+    AdmAreaComponent,
+    FlipCardComponent,
+    TypescriptDynamicTypingComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +62,7 @@ import { AdmAreaComponent } from './pages/adm-area/adm-area.component';
     RepoListService,
     HttpModule,
     MatNativeDateModule,
+    PagerService,
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}
   ],
   entryComponents: [

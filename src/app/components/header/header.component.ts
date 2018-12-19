@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit {
       this.userLogged[0].picture = './assets/img/avatar.png';
     } else {
       this.userLogged[0].picture = this.userLogged[0].picture;
-      console.log('IMAGE RETURN, ' + this.userLogged[0].picture);
     }
     for (let i = 0; i < this.userLogged[0].permissions.length; i++) {
       if (this.userLogged[0].permissions[i].gitHubIntegration.value === true) {
@@ -36,17 +35,14 @@ export class HeaderComponent implements OnInit {
     if (this.userLogged[0].admin) {
       this.isAdmin = true;
     }
-    console.log('userLogged', this.userLogged);
   }
 
   expandMenu() {
-    console.log('Entered Mouse');
     var myClass = document.getElementsByClassName('page');
     myClass[0].classList.add('navExpanded');
   }
   
   collapseMenu() {
-    console.log('Leave Mouse');
     var myClass = document.getElementsByClassName('page');
     myClass[0].classList.remove('navExpanded');
     let elem = document.getElementById("logout-info");
@@ -65,7 +61,6 @@ export class HeaderComponent implements OnInit {
   profileEdit() {
     this.collapseMenu();
     this.router.navigate(['user-config']);
-    console.log('Profile Clicked');
   }
 
   logout() {

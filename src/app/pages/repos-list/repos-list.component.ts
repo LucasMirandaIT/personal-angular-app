@@ -16,6 +16,10 @@ export class ReposListComponent implements OnInit {
   userLogged;
   loading = true;
 
+  headerColumns = ['Copiar', 'Nome', 'Descrição', 'Stars', 'Forks', 'URL Clone'];
+
+  cloneUrls = '';
+
   searchValue;
 
   constructor(private repoService: RepoListService, private searchService: SearchService, private clipboard: ClipboardService, private toastr: ToastrService) { }
@@ -32,6 +36,19 @@ export class ReposListComponent implements OnInit {
     });
   }
 
+  checkCloneURLS() {
+    for (let i = 0; i < this.repositories.length; i++) {
+      if(this.repositories[i].mirror_url) {
+        let cloneValue = ' git clone ' + this.repositories[i].clone_url;
+        this.cloneUrls = this.cloneUrls + cloneValue;
+      }
+    }
+    let copyValue = this.cloneUrls.toString();
+    this.clipboard.copyFromContent(copyValue);
+    this.cloneUrls = '';
+    this.toastr.success('Urls copiadas com sucesso!');
+  }
+
   refreshRepos() {
     let auth;
     for (let i = 0; i < this.userLogged[0].permissions.length; i++) {
@@ -41,11 +58,12 @@ export class ReposListComponent implements OnInit {
     }
     this.repoService.getRepos(auth).toPromise().then((response: any) => {
       this.repositories = JSON.parse(response._body);
-      console.log(this.repositories);
+      for (let i = 0; i < this.repositories.length; i++) {
+        this.repositories[i].mirror_url = false;
+      }
     });
   }
   tableClick(url) {
-    console.log('Clicked');
     window.open(url);
   }
 

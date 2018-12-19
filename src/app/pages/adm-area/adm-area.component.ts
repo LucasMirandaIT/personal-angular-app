@@ -23,7 +23,6 @@ export class AdmAreaComponent implements OnInit {
   refreshUsers() {
     this.profileService.getUsersToAproove().toPromise().then((retorno: any) => {
       this.usersToAproove = JSON.parse(retorno._body);
-      console.log('Retorno Users Aproove, ', this.users);
     });
     this.profileService.getUsers().toPromise().then((retorno: any) => {
       this.users = JSON.parse(retorno._body);

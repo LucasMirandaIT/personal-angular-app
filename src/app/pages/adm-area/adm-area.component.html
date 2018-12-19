@@ -1,14 +1,14 @@
 <mat-tab-group>
   <mat-tab label="Aprovação de Usuários Cadastros">
-    <div>
+    <div *ngIf="usersToAproove?.length > 0">
       <table align="center">
         <thead>
-          <td>ID</td>
-          <td>Nome</td>
-          <td>Username</td>
-          <td>Admin</td>
-          <td>Picture</td>
-          <td>Ações</td>
+            <td style="width: 17vw;">ID</td>
+            <td style="min-width: 12vw;">Nome</td>
+            <td style="min-width: 10vw;">Username</td>
+            <td style="width: 5vw;">Admin</td>
+            <td style="width: 5vw;">Picture</td>
+            <td style="width: 5vw;">Ações</td>
         </thead>
         <tbody>
           <tr *ngFor="let user of usersToAproove">
@@ -28,16 +28,19 @@
         </tbody>
       </table>
     </div>
+    <div *ngIf="usersToAproove?.length === 0">
+      <h3 style="text-align: center">Não há usuários pendentes de aprovação no momento.</h3>
+    </div>
   </mat-tab>
   <mat-tab label="Usuários da Aplicação" style="user-select: none">
     <table align="center">
       <thead>
-        <td>ID</td>
-        <td>Nome</td>
-        <td>Username</td>
-        <td>Admin</td>
-        <td>Picture</td>
-        <td>Ações</td>
+        <td style="width: 17vw;">ID</td>
+        <td style="min-width: 12vw;">Nome</td>
+        <td style="min-width: 10vw;">Username</td>
+        <td style="width: 5vw;">Admin</td>
+        <td style="width: 5vw;">Picture</td>
+        <td style="width: 5vw;">Ações</td>
       </thead>
       <tbody>
         <tr *ngFor="let user of users">
